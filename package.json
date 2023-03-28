@@ -18,7 +18,6 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "https://api.render.com/deploy/srv-cgh7n65269v15ek8v0c0?key=qt6nGy1q9HY",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
