@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // BaseUrl
-const BaseUrl = "http://127.0.0.1:4000" || "https://api.render.com/deploy/srv-cgh7n65269v15ek8v0c0?key=qt6nGy1q9HY";
-// const BaseUrl = "https://api.render.com/deploy/srv-cgh7n65269v15ek8v0c0?key=qt6nGy1q9HY";
+// const BaseUrl = "http://127.0.0.1:4000" || "https://api.render.com/deploy/srv-cgh7n65269v15ek8v0c0?key=qt6nGy1q9HY";
+const BaseUrl = "https://api.render.com/deploy/srv-cgh7n65269v15ek8v0c0?key=qt6nGy1q9HY";
 
 // require fields
 const config = {
