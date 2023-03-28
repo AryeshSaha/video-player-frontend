@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // BaseUrl
-// const BaseUrl = "http://127.0.0.1:4000" || "https://convin-backend-video-player.onrender.com";
+// const BaseUrl = "http://127.0.0.1:4000";
+const BaseUrl = "https://convin-backend-video-player.onrender.com";
 
 // require fields
 const config = {
@@ -18,7 +19,7 @@ export const FetchSingleCardAction = createAsyncThunk(
   async (input, { rejectWithValue, getState, dispatch }) => {
     try {
       const { data } = await axios.get(
-        `/api/card/${input}`,
+        `${BaseUrl}/api/card/${input}`,
         config
       );
       return data;
@@ -37,7 +38,7 @@ export const CreateCardAction = createAsyncThunk(
   async (input, { rejectWithValue, getState, dispatch }) => {
     try {
       const { data } = await axios.post(
-        `/api/card/create`,
+        `${BaseUrl}/api/card/create`,
         input,
         config,
       );
@@ -56,7 +57,7 @@ export const UpdateCardAction = createAsyncThunk(
   async (input, { rejectWithValue, getState, dispatch }) => {
     try {
       const { data } = await axios.put(
-        `/api/card/update`,
+        `${BaseUrl}/api/card/update`,
         input,
         config,
       );
@@ -76,7 +77,7 @@ export const DeleteCardAction = createAsyncThunk(
   async (input, { rejectWithValue, getState, dispatch }) => {
     try {
       const { data } = await axios.put(
-        `/api/card/delete`,
+        `${BaseUrl}/api/card/delete`,
         input,
         config,
       );
@@ -97,7 +98,7 @@ export const MoveCardAction = createAsyncThunk(
   async (input, { rejectWithValue, getState, dispatch }) => {
     try {
       const { data } = await axios.put(
-        `/api/card/move`,
+        `${BaseUrl}/api/card/move`,
         input,
         config,
       );
