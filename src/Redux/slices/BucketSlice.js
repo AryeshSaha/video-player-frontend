@@ -3,7 +3,6 @@ import axios from "axios";
 
 // BaseUrl
 // const BaseUrl = "http://127.0.0.1:4000" || "https://api.render.com/deploy/srv-cgh7n65269v15ek8v0c0?key=qt6nGy1q9HY";
-const BaseUrl = "https://api.render.com/deploy/srv-cgh7n65269v15ek8v0c0?key=qt6nGy1q9HY";
 
 // require fields
 const config = {
@@ -18,7 +17,7 @@ export const FetchBucketsAction = createAsyncThunk(
   "bucket/all-buckets",
   async (input, { rejectWithValue, getState, dispatch }) => {
     try {
-      const { data } = await axios.get(`${BaseUrl}/api/bucket/fetch`, config);
+      const { data } = await axios.get(`/api/bucket/fetch`, config);
       return data;
     } catch (error) {
       if (!error?.response) {
@@ -35,7 +34,7 @@ export const FetchSingleBucketAction = createAsyncThunk(
   async (input, { rejectWithValue, getState, dispatch }) => {
     try {
       const { data } = await axios.get(
-        `${BaseUrl}/api/bucket/${input}`,
+        `/api/bucket/${input}`,
         config
       );
       return data;
@@ -54,7 +53,7 @@ export const CreateBucketAction = createAsyncThunk(
   async (input, { rejectWithValue, getState, dispatch }) => {
     try {
       const { data } = await axios.post(
-        `${BaseUrl}/api/bucket/create`,
+        `/api/bucket/create`,
         input,
         config,
       );
@@ -74,7 +73,7 @@ export const UpdateBucketAction = createAsyncThunk(
   async (input, { rejectWithValue, getState, dispatch }) => {
     try {
       const { data } = await axios.put(
-        `${BaseUrl}/api/bucket/update`,
+        `/api/bucket/update`,
         input,
         config,
       );
@@ -93,7 +92,7 @@ export const DeleteBucketAction = createAsyncThunk(
   async (input, { rejectWithValue, getState, dispatch }) => {
     try {
       const { data } = await axios.put(
-        `${BaseUrl}/api/bucket/delete`,
+        `/api/bucket/delete`,
         input,
         config,
       );
