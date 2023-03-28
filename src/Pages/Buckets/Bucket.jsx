@@ -35,7 +35,7 @@ const Bucket = () => {
       <h1 className="m-4">Cards</h1>
       <div className="container border rounded-3 bg-dark">
         <div className="row text-center justify-content-center align-middle">
-          <div className="col-12">
+          <div className="col-6">
             <ul>
               {cards &&
                 cards.map((card) => (
@@ -89,6 +89,8 @@ const Bucket = () => {
                             buckId={id}
                             title={card.title}
                             link={card.link}
+                            update={update}
+                            setUpdate={setUpdate}
                           />
                         )}
                         <MoveCard cardId={card.id} oldBuckId={id} />

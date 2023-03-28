@@ -28,8 +28,12 @@ const Home = () => {
             <ul>
               {buckets &&
                 buckets.map((bucket) => (
-                  <li key={bucket.id} >
-                    <Link to={`/${bucket.id}`} className="link"><h3 className="rounded-3 bg-secondary text-light border border-light">{bucket.name}</h3></Link>
+                  <li key={bucket.id}>
+                    <Link to={`/${bucket.id}`} className="link">
+                      <h3 className="rounded-3 bg-secondary text-light border border-light">
+                        {bucket.name}
+                      </h3>
+                    </Link>
                     {!update ? (
                       <input
                         type="button"
@@ -38,7 +42,11 @@ const Home = () => {
                         onClick={() => setUpdate(!update)}
                       />
                     ) : (
-                      <UpdateBucket id={`${bucket.id}`} update={update} setUpdate={setUpdate} />
+                      <UpdateBucket
+                        id={`${bucket.id}`}
+                        update={update}
+                        setUpdate={setUpdate}
+                      />
                     )}
                     <DeleteBucket id={`${bucket.id}`} />
                   </li>

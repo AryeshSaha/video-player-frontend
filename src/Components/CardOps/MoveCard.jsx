@@ -17,7 +17,7 @@ const MoveCard = ({cardId, oldBuckId}) => {
     <>
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-info"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
@@ -47,7 +47,7 @@ const MoveCard = ({cardId, oldBuckId}) => {
             <div className="modal-body">
             {buckets &&
                 buckets.map((bucket) => (
-                  <button key={bucket.id} onClick={() => dispatch(MoveCardAction({cardId, oldBuckId, newBuckId:bucket.id}))} >{bucket.name}</button>
+                  <button key={bucket.id} onClick={() => dispatch(MoveCardAction({cardId, oldBuckId, newBuckId:bucket.id}))} className="btn btn-secondary" >{bucket.name}</button>
                 ))}
             </div>
           </div>
