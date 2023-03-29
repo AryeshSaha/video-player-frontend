@@ -10,9 +10,16 @@ import { FetchBucketsAction } from "../../Redux/slices/BucketSlice";
 const Home = () => {
   const dispatch = useDispatch();
 
+  const [click, setClick] = useState(true);
+
   useEffect(() => {
-    dispatch(FetchBucketsAction());
-  }, [dispatch]);
+    if (click) dispatch(FetchBucketsAction());
+    console.log(dispatch, click);
+    return () => {
+      setClick(true);
+      console.log(click);
+    };
+  }, [click, dispatch]);
 
   const buckets = useSelector((state) => state.bucket?.bucketInfo?.buckets);
 
@@ -52,7 +59,7 @@ const Home = () => {
                   </li>
                 ))}
             </ul>
-            <CreateBucket />
+            <CreateBucket setClick={setClick} />
           </div>
         </div>
       </div>

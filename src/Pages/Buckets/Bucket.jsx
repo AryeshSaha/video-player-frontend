@@ -16,9 +16,14 @@ const Bucket = () => {
   const { id } = useParams();
   console.log("id: ", id);
 
+  const [click, setClick] = useState(true);
+
   useEffect(() => {
-    dispatch(FetchSingleBucketAction(id));
-  }, [dispatch, id]);
+    if (click) dispatch(FetchSingleBucketAction(id));
+    return () => {
+      setClick(true);
+    };
+  }, [click, dispatch, id]);
 
   const cards = useSelector(
     (state) => state.bucket?.singleBucketInfo?.bucket?.Card
@@ -98,7 +103,7 @@ const Bucket = () => {
                     </div>
                   </li>
                 ))}
-              <CreateCard id={id} />
+              <CreateCard setClick={setClick} id={id} />
               <DeleteCard buckId={id} ids={ids} />
             </ul>
           </div>

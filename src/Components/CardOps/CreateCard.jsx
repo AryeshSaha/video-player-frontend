@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { CreateCardAction } from "../../Redux/slices/CardSlice";
 
-const CreateCard = ({ id }) => {
+const CreateCard = ({ setClick, id }) => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
@@ -12,6 +12,7 @@ const CreateCard = ({ id }) => {
     dispatch(CreateCardAction({ id, title, link }));
     setTitle("");
     setLink("");
+    setClick(false)
   };
 
   return (
