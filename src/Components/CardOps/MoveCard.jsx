@@ -3,13 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FetchBucketsAction } from '../../Redux/slices/BucketSlice';
 import { MoveCardAction } from '../../Redux/slices/CardSlice';
 
-const MoveCard = ({cardId, oldBuckId}) => {
+const MoveCard = ({cardId, oldBuckId, setClick}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(FetchBucketsAction());
-    console.log("useEffect is called");
   }, [dispatch]);
+
+  const handleClick = (newBuckId) => {
+    dispatch(MoveCardAction({cardId, oldBuckId, newBuckId}))
+    setClick(false)
+  }
 
   const buckets = useSelector((state) => state.bucket?.bucketInfo?.buckets);
 
@@ -47,7 +51,7 @@ const MoveCard = ({cardId, oldBuckId}) => {
             <div className="modal-body">
             {buckets &&
                 buckets.map((bucket) => (
-                  <button key={bucket.id} onClick={() => dispatch(MoveCardAction({cardId, oldBuckId, newBuckId:bucket.id}))} className="btn btn-secondary" >{bucket.name}</button>
+                  <button key={bucket.id} onClick={() => handleClick(bucket.id)} className="btn btn-secondary" >{bucket.name}</button>
                 ))}
             </div>
           </div>

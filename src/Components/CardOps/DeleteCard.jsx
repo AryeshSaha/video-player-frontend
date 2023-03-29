@@ -2,12 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { DeleteCardAction } from "../../Redux/slices/CardSlice";
 
-const DeleteCard = ({ buckId, ids}) => {
+const DeleteCard = ({ buckId, ids, setClick}) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
     // console.log(id);
     dispatch(DeleteCardAction({ buckId, ids }));
+    setClick(false)
   };
   return (
     <>

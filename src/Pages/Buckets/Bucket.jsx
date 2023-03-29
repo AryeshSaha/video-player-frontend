@@ -23,7 +23,7 @@ const Bucket = () => {
     return () => {
       setClick(true);
     };
-  }, [click, dispatch, id]);
+  }, [click,dispatch, id]);
 
   const cards = useSelector(
     (state) => state.bucket?.singleBucketInfo?.bucket?.Card
@@ -96,15 +96,16 @@ const Bucket = () => {
                             link={card.link}
                             update={update}
                             setUpdate={setUpdate}
+                            setClick={setClick}
                           />
                         )}
-                        <MoveCard cardId={card.id} oldBuckId={id} />
+                        <MoveCard cardId={card.id} oldBuckId={id} setClick={setClick} />
                       </div>
                     </div>
                   </li>
                 ))}
               <CreateCard setClick={setClick} id={id} />
-              <DeleteCard buckId={id} ids={ids} />
+              <DeleteCard buckId={id} ids={ids} setClick={setClick} />
             </ul>
           </div>
         </div>

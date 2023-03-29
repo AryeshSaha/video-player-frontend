@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { UpdateCardAction } from "../../Redux/slices/CardSlice";
 
-const UpdateCard = ({ id, buckId, title, link, update, setUpdate }) => {
+const UpdateCard = ({ id, buckId, title, link, update, setUpdate, setClick }) => {
   const dispatch = useDispatch();
 
   // formik
@@ -18,6 +18,7 @@ const UpdateCard = ({ id, buckId, title, link, update, setUpdate }) => {
       dispatch(
         UpdateCardAction({ id, buckId, title: values.title, link: values.link })
       );
+      setClick(false)
       setUpdate(!update)
     },
   });

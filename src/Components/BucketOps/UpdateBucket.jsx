@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { UpdateBucketAction } from "../../Redux/slices/BucketSlice";
 
-const UpdateBucket = ({id, update, setUpdate}) => {
+const UpdateBucket = ({id, update, setUpdate, setClick}) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
 
   const handleClick = () => {
     dispatch(UpdateBucketAction({id, name}));
+    setClick(false)
     setName("");
     setUpdate(!update)
   };

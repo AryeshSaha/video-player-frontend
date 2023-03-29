@@ -53,9 +53,10 @@ const Home = () => {
                         id={`${bucket.id}`}
                         update={update}
                         setUpdate={setUpdate}
+                        setClick={setClick}
                       />
                     )}
-                    <DeleteBucket id={`${bucket.id}`} />
+                    <DeleteBucket id={`${bucket.id}`} setClick={setClick} />
                   </li>
                 ))}
             </ul>
