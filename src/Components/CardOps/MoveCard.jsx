@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { FetchBucketsAction } from '../../Redux/slices/BucketSlice';
-import { MoveCardAction } from '../../Redux/slices/CardSlice';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchBucketsAction } from "../../Redux/slices/BucketSlice";
+import { MoveCardAction } from "../../Redux/slices/CardSlice";
 
-const MoveCard = ({cardId, oldBuckId, setClick}) => {
+const MoveCard = ({ cardId, oldBuckId }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -11,9 +11,8 @@ const MoveCard = ({cardId, oldBuckId, setClick}) => {
   }, [dispatch]);
 
   const handleClick = (newBuckId) => {
-    dispatch(MoveCardAction({cardId, oldBuckId, newBuckId}))
-    setClick(false)
-  }
+    dispatch(MoveCardAction({ cardId, oldBuckId, newBuckId }));
+  };
 
   const buckets = useSelector((state) => state.bucket?.bucketInfo?.buckets);
 
@@ -48,17 +47,30 @@ const MoveCard = ({cardId, oldBuckId, setClick}) => {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body">
-            {buckets &&
-                buckets.map((bucket) => (
-                  <button key={bucket.id} onClick={() => handleClick(bucket.id)} className="btn btn-secondary" >{bucket.name}</button>
-                ))}
+            <div
+              className="modal-body"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              {buckets &&
+                buckets.map(
+                  (bucket) =>
+                    bucket.id !== oldBuckId && (
+                      <button
+                        key={bucket.id}
+                        onClick={() => handleClick(bucket.id)}
+                        className="btn btn-secondary"
+                      >
+                        {bucket.name}
+                      </button>
+                    )
+                )}
             </div>
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default MoveCard
+export default MoveCard;

@@ -1,29 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import CreateBucket from "../../Components/BucketOps/CreateBucket";
-import DeleteBucket from "../../Components/BucketOps/DeleteBucket";
-import UpdateBucket from "../../Components/BucketOps/UpdateBucket";
 import Navbar from "../../Components/Navbar/Navbar";
 import { FetchBucketsAction } from "../../Redux/slices/BucketSlice";
+import SingleBucket from "../../Components/SingleBucket/SingleBucket";
 
 const Home = () => {
   const dispatch = useDispatch();
 
-  const [click, setClick] = useState(true);
+  // const [bucks, setBucks] = useState([]);
 
   useEffect(() => {
-    if (click) dispatch(FetchBucketsAction());
-    console.log(dispatch, click);
-    return () => {
-      setClick(true);
-      console.log(click);
-    };
-  }, [click, dispatch]);
+    dispatch(FetchBucketsAction());
+  }, [dispatch]);
 
   const buckets = useSelector((state) => state.bucket?.bucketInfo?.buckets);
-
-  const [update, setUpdate] = useState(false);
 
   return (
     <>
@@ -34,33 +25,11 @@ const Home = () => {
           <div className="col-6">
             <ul>
               {buckets &&
-                buckets.map((bucket) => (
-                  <li key={bucket.id}>
-                    <Link to={`/${bucket.id}`} className="link">
-                      <h3 className="rounded-3 bg-secondary text-light border border-light">
-                        {bucket.name}
-                      </h3>
-                    </Link>
-                    {!update ? (
-                      <input
-                        type="button"
-                        className="btn btn-primary"
-                        value="Update?"
-                        onClick={() => setUpdate(!update)}
-                      />
-                    ) : (
-                      <UpdateBucket
-                        id={`${bucket.id}`}
-                        update={update}
-                        setUpdate={setUpdate}
-                        setClick={setClick}
-                      />
-                    )}
-                    <DeleteBucket id={`${bucket.id}`} setClick={setClick} />
-                  </li>
-                ))}
+                buckets.map((bucket) => {
+                  return <SingleBucket bucket={bucket} />;
+                })}
             </ul>
-            <CreateBucket setClick={setClick} />
+            <CreateBucket />
           </div>
         </div>
       </div>

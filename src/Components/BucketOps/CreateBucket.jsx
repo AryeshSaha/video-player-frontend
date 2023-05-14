@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { CreateBucketAction } from "../../Redux/slices/BucketSlice";
 
-const CreateBucket = ({setClick}) => {
+const CreateBucket = () => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -10,7 +10,6 @@ const CreateBucket = ({setClick}) => {
   const handleClick = () => {
     dispatch(CreateBucketAction({ name }));
     setName("");
-    setClick(false)
   };
 
   return (
@@ -28,7 +27,12 @@ const CreateBucket = ({setClick}) => {
           onChange={(e) => setName(e.target.value)}
         />
       </div>
-      <input type="button" value="Create" onClick={handleClick} className="btn btn-success" />
+      <input
+        type="button"
+        value="Create"
+        onClick={handleClick}
+        className="btn btn-success"
+      />
     </>
   );
 };

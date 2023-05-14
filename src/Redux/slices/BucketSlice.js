@@ -1,5 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import {
+  CreateCardAction,
+  DeleteCardAction,
+  MoveCardAction,
+  UpdateCardAction,
+} from "./CardSlice";
 
 // BaseUrl
 // const BaseUrl = "http://127.0.0.1:4000";
@@ -56,9 +62,8 @@ export const CreateBucketAction = createAsyncThunk(
       const { data } = await axios.post(
         `${BaseUrl}/api/bucket/create`,
         input,
-        config,
+        config
       );
-      // dispatch(FetchBucketsAction)
       return data;
     } catch (error) {
       if (!error?.response) {
@@ -76,7 +81,7 @@ export const UpdateBucketAction = createAsyncThunk(
       const { data } = await axios.put(
         `${BaseUrl}/api/bucket/update`,
         input,
-        config,
+        config
       );
       return data;
     } catch (error) {
@@ -95,7 +100,7 @@ export const DeleteBucketAction = createAsyncThunk(
       const { data } = await axios.put(
         `${BaseUrl}/api/bucket/delete`,
         input,
-        config,
+        config
       );
       return data;
     } catch (error) {
@@ -129,7 +134,6 @@ const BucketSlice = createSlice({
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
     });
-
     // Fetch single bucket handling
     builder.addCase(FetchSingleBucketAction.pending, (state, action) => {
       state.isLoading = true;
@@ -147,7 +151,6 @@ const BucketSlice = createSlice({
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
     });
-
     // Create bucket handling
     builder.addCase(CreateBucketAction.pending, (state, action) => {
       state.isLoading = true;
@@ -155,10 +158,11 @@ const BucketSlice = createSlice({
       state.serverErr = undefined;
     });
     builder.addCase(CreateBucketAction.fulfilled, (state, action) => {
-      state.createBucket = action?.payload;
+      state.createdBucket = action?.payload;
       state.isLoading = false;
       state.appErr = undefined;
       state.serverErr = undefined;
+      state.bucketInfo.buckets.push(action?.payload?.bucket);
     });
     builder.addCase(CreateBucketAction.rejected, (state, action) => {
       state.isLoading = false;
@@ -176,6 +180,10 @@ const BucketSlice = createSlice({
       state.isLoading = false;
       state.appErr = undefined;
       state.serverErr = undefined;
+      const index = state.bucketInfo.buckets.findIndex(
+        (bucket) => bucket.id === action?.payload?.updateBuck.id
+      );
+      state.bucketInfo.buckets[index] = action?.payload?.updateBuck;
     });
     builder.addCase(UpdateBucketAction.rejected, (state, action) => {
       state.isLoading = false;
@@ -193,12 +201,43 @@ const BucketSlice = createSlice({
       state.isLoading = false;
       state.appErr = undefined;
       state.serverErr = undefined;
+      const newArray = state.bucketInfo.buckets.filter(
+        (bucket) => bucket.id !== action?.payload?.bucket.id
+      );
+      state.bucketInfo.buckets = newArray;
     });
     builder.addCase(DeleteBucketAction.rejected, (state, action) => {
       state.isLoading = false;
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
     });
+    // Create Card Action
+    builder.addCase(CreateCardAction.fulfilled, (state, action) => {
+      state.singleBucketInfo.bucket.Card.push(action?.payload?.card);
+    });
+    // Update Card Action
+    builder.addCase(UpdateCardAction.fulfilled, (state, action) => {
+      const index = state.singleBucketInfo.bucket.Card.findIndex(
+        (card) => card.id === action?.payload?.updateCard.id
+      );
+      state.singleBucketInfo.bucket.Card[index] = action?.payload?.updateCard;
+    });
+
+    // Move Card Action
+    builder.addCase(MoveCardAction.fulfilled, (state, action) => {
+      const newArray = state.singleBucketInfo.bucket.Card.filter(
+        (card) => card.id !== action?.payload?.moveCard.id
+      );
+      state.singleBucketInfo.bucket.Card = newArray;
+    });
+
+    // Delete Card Action
+    // builder.addCase(DeleteCardAction.fulfilled, (state, action) => {
+    //   const newArray = state.singleBucketInfo.bucket.Card.filter(
+    //     (card) => card.id !== action?.payload?.bucket.id
+    //   );
+    //   state.singleBucketInfo.bucket.Card = newArray;
+    // })
   },
 });
 

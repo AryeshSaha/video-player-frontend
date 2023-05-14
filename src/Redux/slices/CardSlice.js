@@ -18,10 +18,7 @@ export const FetchSingleCardAction = createAsyncThunk(
   "card/single-card",
   async (input, { rejectWithValue, getState, dispatch }) => {
     try {
-      const { data } = await axios.get(
-        `${BaseUrl}/api/card/${input}`,
-        config
-      );
+      const { data } = await axios.get(`${BaseUrl}/api/card/${input}`, config);
       return data;
     } catch (error) {
       if (!error?.response) {
@@ -40,7 +37,7 @@ export const CreateCardAction = createAsyncThunk(
       const { data } = await axios.post(
         `${BaseUrl}/api/card/create`,
         input,
-        config,
+        config
       );
       return data;
     } catch (error) {
@@ -59,7 +56,7 @@ export const UpdateCardAction = createAsyncThunk(
       const { data } = await axios.put(
         `${BaseUrl}/api/card/update`,
         input,
-        config,
+        config
       );
       return data;
     } catch (error) {
@@ -79,7 +76,7 @@ export const DeleteCardAction = createAsyncThunk(
       const { data } = await axios.put(
         `${BaseUrl}/api/card/delete`,
         input,
-        config,
+        config
       );
       return data;
     } catch (error) {
@@ -100,7 +97,7 @@ export const MoveCardAction = createAsyncThunk(
       const { data } = await axios.put(
         `${BaseUrl}/api/card/move`,
         input,
-        config,
+        config
       );
       return data;
     } catch (error) {

@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { UpdateBucketAction } from "../../Redux/slices/BucketSlice";
 
-const UpdateBucket = ({id, update, setUpdate, setClick}) => {
+const UpdateBucket = ({bucket, update, setUpdate}) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
 
   const handleClick = () => {
-    dispatch(UpdateBucketAction({id, name}));
-    setClick(false)
+    dispatch(UpdateBucketAction({id: bucket.id, name}));
     setName("");
     setUpdate(!update)
   };
@@ -27,7 +26,7 @@ const UpdateBucket = ({id, update, setUpdate, setClick}) => {
           className="form-control"
           id="name"
           name="name"
-          value={name}
+          value={name ? name : bucket.name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
