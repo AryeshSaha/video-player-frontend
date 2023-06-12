@@ -1,74 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchBucketsAction } from "../../Redux/slices/BucketSlice";
 import { MoveCardAction } from "../../Redux/slices/CardSlice";
 
 const MoveCard = ({ cardId, oldBuckId }) => {
   const dispatch = useDispatch();
+  const [newBuckId, setNewBuckId] = useState(null);
 
+  const handleClick = () => {
+    dispatch(MoveCardAction({ oldBuckId, newBuckId, cardId }))
+  };
   useEffect(() => {
     dispatch(FetchBucketsAction());
   }, [dispatch]);
-
-  const handleClick = (newBuckId) => {
-    dispatch(MoveCardAction({ cardId, oldBuckId, newBuckId }));
-  };
 
   const buckets = useSelector((state) => state.bucket?.bucketInfo?.buckets);
 
   return (
     <>
+
+      <select className="form-select" onChange={(e) => setNewBuckId(e.target.value)} >
+        <option defaultValue={newBuckId}>---select---</option>
+        {
+          buckets?.map((bucket) => bucket.id !== oldBuckId && (
+            <option key={bucket.id} value={bucket.id}>{bucket.name}</option>
+          ))
+        }
+      </select>
+
       <button
         type="button"
         className="btn btn-info"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        onClick={handleClick}
       >
         Move
       </button>
-
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Bucket List
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div
-              className="modal-body"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            >
-              {buckets &&
-                buckets.map(
-                  (bucket) =>
-                    bucket.id !== oldBuckId && (
-                      <button
-                        key={bucket.id}
-                        onClick={() => handleClick(bucket.id)}
-                        className="btn btn-secondary"
-                      >
-                        {bucket.name}
-                      </button>
-                    )
-                )}
-            </div>
-          </div>
-        </div>
-      </div>
     </>
   );
 };

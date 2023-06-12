@@ -1,37 +1,40 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import UpdateBucket from "../BucketOps/UpdateBucket";
-import DeleteBucket from "../BucketOps/DeleteBucket";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import SingleCard from "../SingleCard/SingleCard";
+import CreateCard from "../CardOps/CreateCard";
+import DeleteCard from "../CardOps/DeleteCard";
+import { FetchSingleBucketAction } from "../../Redux/slices/BucketSlice";
 
-const SingleBucket = ({ bucket }) => {
-    
-  const [update, setUpdate] = useState(false);
+const SingleBucket = ({ buckId }) => {
+  const [ids, setIds] = useState([]);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(FetchSingleBucketAction(buckId));
+  }, [dispatch, buckId]);
+
+  const cards = useSelector(
+    (state) => state.bucket?.singleBucketInfo?.bucket?.Cards
+  );
+  // console.log("Cards: ", cards);
   return (
     <>
-      <li key={bucket.id}>
-        <Link to={`/${bucket.id}`} className="link">
-          <h3 className="rounded-3 bg-secondary text-light border border-light">
-            {bucket.name}
-          </h3>
-        </Link>
-        {!update ? (
-          <input
-            type="button"
-            className="btn btn-primary"
-            value="Update?"
-            onClick={() => setUpdate(!update)}
-          />
-        ) : (
-          <UpdateBucket
-            // id={`${bucket.id}`}
-            bucket={bucket}
-            update={update}
-            setUpdate={setUpdate}
-          />
-        )}
-        <DeleteBucket id={`${bucket.id}`} />
-      </li>
+      <div className="col-6">
+        <ul>
+          {cards?.map((card) => (
+            <SingleCard
+              key={card._id}
+              ids={ids}
+              setIds={setIds}
+              buckId={buckId}
+              card={card}
+            />
+          ))}
+          <CreateCard buckId={buckId} />
+          <DeleteCard buckId={buckId} ids={ids} />
+        </ul>
+      </div>
     </>
   );
 };

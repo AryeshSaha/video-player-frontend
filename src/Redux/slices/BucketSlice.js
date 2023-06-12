@@ -8,8 +8,8 @@ import {
 } from "./CardSlice";
 
 // BaseUrl
-// const BaseUrl = "http://127.0.0.1:4000";
-const BaseUrl = "https://convin-backend-video-player.onrender.com";
+const BaseUrl = "http://127.0.0.1:4000";
+// const BaseUrl = "https://convin-backend-video-player.onrender.com";
 
 // require fields
 const config = {
@@ -213,31 +213,35 @@ const BucketSlice = createSlice({
     });
     // Create Card Action
     builder.addCase(CreateCardAction.fulfilled, (state, action) => {
-      state.singleBucketInfo.bucket.Card.push(action?.payload?.card);
+      state.singleBucketInfo.bucket.Cards.push(action?.payload?.card);
     });
     // Update Card Action
     builder.addCase(UpdateCardAction.fulfilled, (state, action) => {
-      const index = state.singleBucketInfo.bucket.Card.findIndex(
+      const index = state.singleBucketInfo.bucket.Cards.findIndex(
         (card) => card.id === action?.payload?.updateCard.id
       );
-      state.singleBucketInfo.bucket.Card[index] = action?.payload?.updateCard;
+      state.singleBucketInfo.bucket.Cards[index] = action?.payload?.updateCard;
     });
 
     // Move Card Action
     builder.addCase(MoveCardAction.fulfilled, (state, action) => {
-      const newArray = state.singleBucketInfo.bucket.Card.filter(
+      const newArray = state.singleBucketInfo.bucket.Cards.filter(
         (card) => card.id !== action?.payload?.moveCard.id
       );
-      state.singleBucketInfo.bucket.Card = newArray;
+      state.singleBucketInfo.bucket.Cards = newArray;
     });
 
     // Delete Card Action
-    // builder.addCase(DeleteCardAction.fulfilled, (state, action) => {
-    //   const newArray = state.singleBucketInfo.bucket.Card.filter(
-    //     (card) => card.id !== action?.payload?.bucket.id
-    //   );
-    //   state.singleBucketInfo.bucket.Card = newArray;
-    // })
+    builder.addCase(DeleteCardAction.fulfilled, (state, action) => {
+      const newArray = state.singleBucketInfo.bucket.Cards.filter(
+        (card) =>
+        // some() returns true if matches are found
+          !action?.payload?.deletedCards.some(
+            (removeCard) => card.id === removeCard.id
+          )
+      );
+      state.singleBucketInfo.bucket.Cards = newArray;
+    });
   },
 });
 

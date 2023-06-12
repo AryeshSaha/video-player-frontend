@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Bucket from './Pages/Buckets/Bucket';
 import Home from './Pages/Home/Home';
+import Bucket from './Components/SingleBucket/Bucket';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/:id' element={<Bucket />} />
+          <Route path='/buck/:buckId' element={<Bucket />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,22 +1,20 @@
 import React from "react";
 
-const Modal = ({cardTitle, cardLink}) => {
-
+const Modal = ({ card }) => {
   return (
     <>
       <div
         className="modal fade"
-        id="example1Modal"
+        id={`exampleModal${card.id}`}
         tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby={`exampleModalLabel${card.id}`}
         aria-hidden="true"
-        
       >
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                {cardTitle}
+              <h5 className="modal-title" id={`exampleModalLabel${card.id}`}>
+                {card.title}
               </h5>
               <button
                 type="button"
@@ -29,8 +27,8 @@ const Modal = ({cardTitle, cardLink}) => {
               <iframe
                 width="560"
                 height="315"
-                src={`${cardLink}`}
-                title={`${cardTitle}`}
+                src={card.link}
+                title={card.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>

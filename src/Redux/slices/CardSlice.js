@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // BaseUrl
-// const BaseUrl = "http://127.0.0.1:4000";
-const BaseUrl = "https://convin-backend-video-player.onrender.com";
+const BaseUrl = "http://127.0.0.1:4000";
+// const BaseUrl = "https://convin-backend-video-player.onrender.com";
 
 // require fields
 const config = {
@@ -139,7 +139,7 @@ const CardSlice = createSlice({
       state.serverErr = undefined;
     });
     builder.addCase(CreateCardAction.fulfilled, (state, action) => {
-      state.createCard = action?.payload;
+      state.createdCard = action?.payload;
       state.isLoading = false;
       state.appErr = undefined;
       state.serverErr = undefined;
@@ -156,7 +156,7 @@ const CardSlice = createSlice({
       state.serverErr = undefined;
     });
     builder.addCase(UpdateCardAction.fulfilled, (state, action) => {
-      state.updateCard = action?.payload;
+      state.updatedCard = action?.payload;
       state.isLoading = false;
       state.appErr = undefined;
       state.serverErr = undefined;
@@ -173,7 +173,7 @@ const CardSlice = createSlice({
       state.serverErr = undefined;
     });
     builder.addCase(DeleteCardAction.fulfilled, (state, action) => {
-      state.deleteCard = action?.payload;
+      state.deletedCard = action?.payload;
       state.isLoading = false;
       state.appErr = undefined;
       state.serverErr = undefined;
@@ -190,7 +190,7 @@ const CardSlice = createSlice({
       state.serverErr = undefined;
     });
     builder.addCase(MoveCardAction.fulfilled, (state, action) => {
-      state.moveCard = action?.payload;
+      state.movedCard = action?.payload;
       state.isLoading = false;
       state.appErr = undefined;
       state.serverErr = undefined;

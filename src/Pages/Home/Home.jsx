@@ -3,16 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import CreateBucket from "../../Components/BucketOps/CreateBucket";
 import Navbar from "../../Components/Navbar/Navbar";
 import { FetchBucketsAction } from "../../Redux/slices/BucketSlice";
-import SingleBucket from "../../Components/SingleBucket/SingleBucket";
+import Buckets from "../Buckets/Buckets";
 
 const Home = () => {
   const dispatch = useDispatch();
 
-  // const [bucks, setBucks] = useState([]);
-
   useEffect(() => {
     dispatch(FetchBucketsAction());
-  }, [dispatch]);
+  },[dispatch]);
 
   const buckets = useSelector((state) => state.bucket?.bucketInfo?.buckets);
 
@@ -26,7 +24,7 @@ const Home = () => {
             <ul>
               {buckets &&
                 buckets.map((bucket) => {
-                  return <SingleBucket bucket={bucket} />;
+                  return <Buckets key={bucket.id} bucket={bucket} />;
                 })}
             </ul>
             <CreateBucket />
