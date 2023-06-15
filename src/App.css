@@ -14,13 +14,3 @@ ul{
   text-decoration: none;
   color: #000;
 }
-
-h3:hover{
-  color:aqua !important;
-  background-color: #000 !important;
-  border-color: aqua !important;
-}
-
-.btn{
-  margin: 25px;
-}

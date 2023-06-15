@@ -31,7 +31,7 @@ const CreateBucket = () => {
         type="button"
         value="Create"
         onClick={handleClick}
-        className="btn btn-success"
+        className="btn bg-none text-white outline outline-1 outline-green-500 hover:bg-green-500 m-3"
       />
     </>
   );

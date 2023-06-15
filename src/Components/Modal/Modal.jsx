@@ -16,14 +16,8 @@ const Modal = ({ card }) => {
               <h5 className="modal-title" id={`exampleModalLabel${card.id}`}>
                 {card.title}
               </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body flex justify-center">
               <iframe
                 width="560"
                 height="315"
@@ -32,6 +26,15 @@ const Modal = ({ card }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary text-black"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>

@@ -30,7 +30,7 @@ const MoveCard = ({ cardId, oldBuckId }) => {
 
       <button
         type="button"
-        className="btn btn-info"
+        className="btn bg-none text-black outline outline-1 outline-cyan-400 hover:bg-cyan-400 m-3"
         onClick={handleClick}
       >
         Move

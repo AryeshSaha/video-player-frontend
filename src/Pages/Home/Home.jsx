@@ -16,8 +16,8 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
-      <h1 className="m-4">Buckets</h1>
+      <Navbar heading={"Video Player"} />
+      <h1 className="font-semibold m-4 text-2xl">Albums</h1>
       <div className="container bg-dark rounded-3">
         <div className="row text-center justify-content-center align-middle">
           <div className="col-6">

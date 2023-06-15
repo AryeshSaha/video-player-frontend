@@ -8,8 +8,8 @@ import {
 } from "./CardSlice";
 
 // BaseUrl
-const BaseUrl = "http://127.0.0.1:4000";
-// const BaseUrl = "https://convin-backend-video-player.onrender.com";
+const BaseUrl = "https://convin-backend-video-player.onrender.com";
+// const BaseUrl = "http://127.0.0.1:4000";
 
 // require fields
 const config = {

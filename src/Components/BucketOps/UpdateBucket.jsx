@@ -30,7 +30,7 @@ const UpdateBucket = ({bucket, update, setUpdate}) => {
           onChange={(e) => setName(e.target.value)}
         />
       </div>
-      <input type="button" value="Update Bucket" onClick={handleClick} className="btn btn-primary" />
+      <input type="button" value="Update Bucket" onClick={handleClick} className="btn bg-none text-white outline outline-1 outline-blue-400 hover:bg-blue-400 m-3" />
     </>
   );
 };

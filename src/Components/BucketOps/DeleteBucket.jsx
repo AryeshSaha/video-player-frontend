@@ -12,7 +12,7 @@ const DeleteBucket = ({ id }) => {
 
   return (
     <>
-      <input type="button" value="Delete Bucket" onClick={handleClick} className="btn btn-danger" />
+      <input type="button" value="Delete Bucket" onClick={handleClick} className="btn bg-none text-white outline outline-1 outline-red-700 hover:bg-red-700 m-3" />
     </>
   );
 };

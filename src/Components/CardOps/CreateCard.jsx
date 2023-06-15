@@ -42,7 +42,7 @@ const CreateCard = ({ buckId }) => {
           value={link}
         />
       </div>
-      <input type="button" value="Create Card" onClick={handleClick} className="btn btn-success" />
+      <input type="button" value="Create Card" onClick={handleClick} className="btn bg-none text-white outline outline-1 outline-green-500 hover:bg-green-500 m-3" />
     </>
   );
 };

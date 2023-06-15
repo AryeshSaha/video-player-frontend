@@ -50,7 +50,7 @@ const UpdateCard = ({ id, buckId, title, link, update, setUpdate }) => {
           value={formik.values.link}
         />
       </div>
-      <input type="button" value="Update Card" onClick={formik.handleSubmit} className="btn btn-primary" />
+      <input type="button" value="Update Card" onClick={formik.handleSubmit} className="btn bg-none text-black outline outline-1 outline-blue-600 hover:bg-blue-600 hover:text-white m-3" />
     </>
   );
 };

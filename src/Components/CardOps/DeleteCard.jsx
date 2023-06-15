@@ -15,7 +15,7 @@ const DeleteCard = ({ buckId, ids }) => {
         type="button"
         value="Delete Card"
         onClick={handleClick}
-        className="btn btn-danger"
+        className="btn bg-none text-white outline outline-1 outline-red-700 hover:bg-red-700 m-3"
       />
     </>
   );

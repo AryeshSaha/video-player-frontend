@@ -9,7 +9,7 @@ const SingleCard = ({ ids, setIds, buckId, card }) => {
   return (
     <>
       <li>
-        <div className="card m-auto my-5" style={{ width: "30rem" }}>
+        <div className="card m-auto my-5 bg-gray-300" style={{ width: "30rem" }}>
           <div className="card-body">
             <label htmlFor="delete" className="fw-bold float-end">
               Select
@@ -34,16 +34,15 @@ const SingleCard = ({ ids, setIds, buckId, card }) => {
               className="card-link link"
               data-bs-toggle="modal"
               data-bs-target={`#exampleModal${card.id}`}
-              style={{ cursor: "pointer" }}
             >
-              <h4 className="card-title">{card.title}</h4>
-              <p>{card.link}</p>
+              <h4 className="card-title text-slate-950 text-lg">{card.title}</h4>
+              <p className="text-teal-700 hover:bg-gray-400 rounded-md" style={{ cursor: "pointer" }}>{card.link}</p>
             </div>
             <Modal card={card} />
             {!update ? (
               <input
                 type="button"
-                className="btn btn-primary"
+                className="btn bg-none text-black outline outline-1 outline-blue-600 hover:bg-blue-600 hover:text-white m-3"
                 value="Update?"
                 onClick={() => setUpdate(!update)}
               />
